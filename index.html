@@ -4,63 +4,84 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<meta charset=utf-8>
 		<title>My first three.js app</title>
-		<style>
-	
-body, 
-html{
-    height: 100%;
-    width: 100%;
-    font-size: 16px;
-    position: relative;  
-    background:#000000;
+	<style>
+       #map {
+        height: 100%;
+        width: 100%;
+        z-index:0;
+       }
+#iddivedti {
+position: absolute;
+-webkit-box-shadow: 1px 47px 47px 5px rgba(0,0,0,0.43); 
+box-shadow: 1px 47px 47px 5px rgba(0,0,0,0.43);
+background-color:ffbb00;
+    left: 22px;
+    top: 235px;
+     z-index:6;
+  width:80% ;
+    height:55px;
+   border-radius: 12%;
 }
-#iddivedti{
-    width: 70%;
-    border: 1px solid #E1E1E1;
-    border-radius: 4px;
-    padding: 15px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #5BBCCF;
+#costo {
+position: absolute;
+-webkit-box-shadow: 1px 47px 47px 5px rgba(0,0,0,0.43); 
+box-shadow: 1px 47px 47px 5px rgba(0,0,0,0.43);
+background-color:ffbb00;
+    left: 22px;
+    top: 500px;
+     z-index:6;
+    width:70%;
+    height:300px;
+   border-radius: 1%;
 }
 #iddivlog{
-    width:70%;
-    border: 1px solid #E1E1E1;
-    border-radius: 4px;
-    padding: 15px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #5BBCCF;
+position: absolute;
+-webkit-box-shadow: 1px 47px 47px 5px rgba(0,0,0,0.43); 
+box-shadow: 1px 47px 47px 5px rgba(0,0,0,0.43);
+background-color:4ab572;
+    left: 22px;
+    top: 160px;
+    z-index: 5;
+  width:80% ;
+    height:55px;
+   border-radius: 12%;
 }
-@media (max-width: 400px){
-    #iddivedti{
-        width: 70%;
-    }
-     #iddivlog{
-        width: 70%;
-    }
+#idbuton3 {
+position: absolute;
+-webkit-box-shadow: 1px 47px 47px 5px rgba(0,0,0,0.43); 
+box-shadow: 1px 47px 47px 5px rgba(0,0,0,0.43);
+background-color:02a4a7;
+    left: 22px;
+    top: 310px;
+    z-index: 5;
+    width:80% ;
+    height:55px;
+   border-radius: 12%;
 }
-
-
-#label{
-color: #FFF;
-background:#000000;
-text-shadow: #7A7A7A 4px 3px 0;
+#idbtmoscote {
+position: absolute;
+-webkit-box-shadow: 1px 47px 47px 5px rgba(0,0,0,0.43); 
+box-shadow: 1px 47px 47px 5px rgba(0,0,0,0.43);
+background-color:02a4a7;
+    left: 22px;
+    top: 400px;
+    z-index: 5;
+    width:80% ;
+    height:55px;
+   border-radius: 12%;
 }
-
-
-		</style>
+#demo {
+position: absolute;
+    left: 222px;
+    top: 160px;
+    z-index: 5;
+}
+    </style> 
 	</head>
 	<body> 
          <div id="iddivlog" ><br> user<input id="idnombre" type="text" name="lname"><br>
             pass<input id="idclave" type="text" name="lname">
-  <button onclick="validarform()">Calcular</button>
-
-</div> 
+  <button onclick="validarform()">ok</div> 
  <div id="iddivedti" ><br> temperatura C: <input id="idedittemp" type="number" name="lname">
   <button onclick="presionsatura()">Calcular</button>
   <h5 id="labelmsn">msn.</h5>
