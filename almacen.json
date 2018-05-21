@@ -1,0 +1,14 @@
+{
+  "uno" : {
+    "clave" : "miclave",
+    "nombre" : "minombre",
+    "email" : "minombre2",
+    "msn" : "no has pagado"
+  },
+  "dos" : {
+    "clave" : "miclave2",
+    "nombre" : "minombre2",
+    "email" : "minombre2",
+    "msn" : "ms2"
+  }
+}

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+	<head><script src="jquery-3.3.1.min.js"></script>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta charset=utf-8>
+		<title>My first three.js app</title>
+		<style>
+	
+body, 
+html{
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    position: relative;  
+    background:#000000;
+}
+#iddivedti{
+    width: 500px;
+    border: 1px solid #E1E1E1;
+    border-radius: 4px;
+    padding: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #5BBCCF;
+}
+#iddivlog{
+    width: 500px;
+    border: 1px solid #E1E1E1;
+    border-radius: 4px;
+    padding: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #5BBCCF;
+}
+@media (max-width: 400px){
+    #iddivedti{
+        width: 70%;
+    }
+     #iddivlog{
+        width: 70%;
+    }
+}
+
+
+#label{
+color: #FFF;
+background:#000000;
+text-shadow: #7A7A7A 4px 3px 0;
+}
+
+
+		</style>
+	</head>
+	<body> 
+         <div id="iddivlog" ><br> user<input id="idnombre" type="text" name="lname"><br>
+            pass<input id="idclave" type="text" name="lname">
+  <button onclick="validarform()">Calcular</button>
+
+</div> 
+ <div id="iddivedti" ><br> temperatura C: <input id="idedittemp" type="number" name="lname">
+  <button onclick="presionsatura()">Calcular</button>
+  <h5 id="labelmsn">msn.</h5>
+<h5 id="labelT">This is some text in a h5aragrah5h.</h5>
+<h5 id="labelp">This is some text in a h5aragrah5h.</h5>
+<h5 id="labelvf">This is some text in a h5aragrah5h.</h5>
+<h5 id="labelvg">This is some text in a h5aragrah5h.</h5>
+<h5 id="labelvfg">This is some text in a h5aragrah5h.</h5>
+<h5 id="labeluf">This is some text in a h5aragrah5h.</h5>
+<h5 id="labelug">This is some text in a h5aragrah5h.</h5>
+<h5 id="labelufg">This is some text in a h5aragrah5h.</h5>
+<h5 id="labelhf">This is some text in a h5aragrah5h.</h5>
+<h5 id="labelhg">This is some text in a h5aragrah5h.</h5>
+<h5 id="labelhfg">This is some text in a h5aragrah5h.</h5>
+<h5 id="labelsf">This is some text in a h5aragrah5h.</h5>
+<h5 id="labelsg">This is some text in a h5aragrah5h.</h5>
+<h5 id="labelsfg">This is some text in a h5aragrah5h.</h5>
+</div> 
+  
+		<script src=""></script>
+		<script>
+var nombre="";
+var clave="";
+var almacen;
+
+$.getJSON('almacen.json', function(data) {
+  almacen=data;
+    //data is the JSON string
+});
+
+document.getElementById("iddivedti").style.display = "none";
+function validarform(){
+
+    nombre=document.getElementById("idnombre").value;
+    clave=document.getElementById("idclave").value;
+
+   for(var x in almacen) {
+    if(nombre==almacen[x].nombre&&clave==almacen[x].clave)
+    {
+document.getElementById("iddivedti").style.display = "block";
+document.getElementById("iddivlog").style.display = "none";
+labelmsn(almacen[x].msn);
+
+    console.log(almacen[x].clave);
+}
+
+}
+    //data is the JSON string
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+            var vtexto="";
+
+		var vpsat=0;
+		var vtemp=0;
+		var voluf=0;
+		var volg=0;
+		var vuf=0;
+		var vug=0;
+		var vhg=0;
+		var vhf=0;
+		var vsf=0;
+		var vsg=0;
+		var volf=0;
+		var volg=0;
+			function presionsatura(){
+
+vtemp=document.getElementById("idedittemp").value;
+
+presionsat(vtemp);
+labelt("T ="+vtemp+ " C");
+labelP("Psat ="+vpsat+" KPa");
+labelvf("vf ="+volf+" m3/Kg");
+labelvg("vg ="+volg+" m3/Kg");
+labelvfg("vfg ="+(-volf+volg)+" me/Kg");
+labeluf("uf ="+vuf+" KJ/Kg");
+labelug("ug ="+vug +" KJ/Kg");
+labelufg("ufg ="+(-vuf+vug)+" KJ/Kg");
+labelhf("hf ="+vhf+" KJ/Kg");
+labelhg("hg ="+vhg+" KJ/Kg");
+labelhfg("hfg ="+(-vhf+vhg)+" KJ/Kg");
+labelsf("sf ="+vsf+" KJ/Kg*K");
+labelsg("sg ="+vsg+" KJ/Kg*K");
+labelsfg("sfg ="+(-vsf+vsg)+" KJ/Kg*K");
+
+//vtexto=
+
+			}function labelmsn(st1){
+
+            document.getElementById("labelmsn").innerHTML =st1;
+        }
+		function labelt(st1){
+
+			document.getElementById("labelT").innerHTML =st1;
+		}
+			// Our Javascript will go here.
+		  function labelP(st1){
+
+            document.getElementById("labelp").innerHTML =st1;
+        }   function labelvf(st1){
+
+            document.getElementById("labelvf").innerHTML =st1;
+        }   function labelvg(st1){
+
+            document.getElementById("labelvg").innerHTML =st1;
+        }  
+
+            function labelvfg(st1){
+
+            document.getElementById("labelvfg").innerHTML =st1;
+        } function labeluf(st1){
+
+            document.getElementById("labeluf").innerHTML =st1;
+        }   function labelug(st1){
+
+              document.getElementById("labelug").innerHTML =st1;
+        }  function labelufg(st1){
+
+            document.getElementById("labelufg").innerHTML =st1;
+        } 
+
+          function labelhf(st1){
+
+            document.getElementById("labelhf").innerHTML =st1;
+        }   function labelhg(st1){
+
+            document.getElementById("labelhg").innerHTML =st1;
+        }
+            function labelhfg(st1){
+
+            document.getElementById("labelhfg").innerHTML =st1;
+        }  function labelsf(st1){
+
+            document.getElementById("labelsf").innerHTML =st1;
+        }
+    function labelsg(st1){
+
+            document.getElementById("labelsg").innerHTML =st1;
+        }
+
+    function labelsfg(st1){
+
+            document.getElementById("labelsfg").innerHTML =st1;
+        }
+
+		function presionsat(x){
+		//0 <=20
+			if(0<x&&x<=20){ vpsat= 6.2800642942941520e-001 * Math.pow(x,0)
+        +  3.0267021229543986e-002 * Math.pow(x,1)
+        +  2.8280959114078711e-003 * Math.pow(x,2);
+        volf= 9.9999833205462207e-004 * Math.pow(x,0)
+        +  1.6736164389484024e-007 * Math.pow(x,1)
+        + -5.6763963476807925e-008 * Math.pow(x,2)
+        +  5.3388931509647951e-009 * Math.pow(x,3)
+        + -1.3344452968445246e-010 * Math.pow(x,4);
+        volg= 2.0614173856604475e+002 * Math.pow(x,0)
+        + -1.4179157735847150e+001 * Math.pow(x,1)
+        +  5.3023808301789543e-001 * Math.pow(x,2)
+        + -1.2496461886700757e-002 * Math.pow(x,3)
+        +  1.4424923773340904e-004 * Math.pow(x,4);
+        vuf=-4.2197822643071890e-002 * Math.pow(x,0)
+        +  4.2197990927671984e+000 * Math.pow(x,1)
+        + -1.6832063206174900e-003 * Math.pow(x,2)
+        +  3.5992742123834550e-005 * Math.pow(x,3)
+        + -3.4652150902755533e-007 * Math.pow(x,4);
+        vug=2.3748863091350931e+003 * Math.pow(x,0)
+        +  1.3690378603470921e+000 * Math.pow(x,1)
+        +  4.8680328883130789e-003 * Math.pow(x,2)
+        + -4.8769711758529392e-004 * Math.pow(x,3)
+        +  1.2420609020765620e-005 * Math.pow(x,4);
+        vhf=-4.1193984831910620e-002 * Math.pow(x,0)
+        +  4.2194141603430184e+000 * Math.pow(x,1)
+        + -1.5679824475318170e-003 * Math.pow(x,2)
+        +  2.7313282692015115e-005 * Math.pow(x,3)
+        + -1.4626565344701349e-007 * Math.pow(x,4);
+        vhg=2.5008813061342307e+003 * Math.pow(x,0)
+        +  1.8694557772957492e+000 * Math.pow(x,1)
+        + -6.9238088069439657e-003 * Math.pow(x,2)
+        +  3.9564621683497298e-004 * Math.pow(x,3)
+        + -7.9129243252446182e-006 * Math.pow(x,4);
+        vsf= -1.5485762093195361e-004 * Math.pow(x,0)
+        +  1.5486190675377265e-002 * Math.pow(x,1)
+        + -4.2866694551306272e-005 * Math.pow(x,2)
+        +  8.4952540285728512e-007 * Math.pow(x,3)
+        + -1.6990508055925491e-008 * Math.pow(x,4);
+        vsg= 9.1558685548639183e+000 * Math.pow(x,0)
+        + -2.6856897859790483e-002 * Math.pow(x,1)
+        +  1.4116570034488759e-004 * Math.pow(x,2)
+        + -1.8951828755271617e-006 * Math.pow(x,3)
+        +  3.7903657488304389e-008 * Math.pow(x,4);
+
+
+		}
+
+//21<=45
+	if(20<x&&x<=45){ vpsat=   6.9990317314708705e-001 * Math.pow(x,0)
+        +  2.9860344110089476e-002 * Math.pow(x,1)
+        +  2.3600555460909197e-003 * Math.pow(x,2)
+        + -2.2740738755405986e-006 * Math.pow(x,3)
+        +  7.2666666514634417e-007 * Math.pow(x,4);
+        volf=  9.7663095228705350e-004 * Math.pow(x,0)
+        +  3.4412698539185380e-006 * Math.pow(x,1)
+        + -1.7750000061912001e-007 * Math.pow(x,2)
+        +  4.1111111241864015e-009 * Math.pow(x,3)
+        + -3.3333333434091701e-011 * Math.pow(x,4);
+        volg=1.8864249999652483e+002 * Math.pow(x,0)
+        + -1.0903583332886901e+001 * Math.pow(x,1)
+        +  2.8549666664586593e-001 * Math.pow(x,2)
+        + -3.7866666662483921e-003 * Math.pow(x,3)
+        +  2.0533333330259168e-005 * Math.pow(x,4);
+        vuf=-4.7109127844199267e-001 * Math.pow(x,0)
+        +  4.2751505302512696e+000 * Math.pow(x,1)
+        + -4.1697222781677638e-003 * Math.pow(x,2)
+        +  7.9962964136870361e-005 * Math.pow(x,3)
+        + -5.6666667565876139e-007 * Math.pow(x,4);
+        vug=2.3784630952383518e+003 * Math.pow(x,0)
+        +  9.0579365075797180e-001 * Math.pow(x,1)
+        +  2.2083333335136013e-002 * Math.pow(x,2)
+        + -4.5555555559475386e-004 * Math.pow(x,3)
+        +  3.3333333336433999e-006 * Math.pow(x,4);
+        vhf= 1.0519246196961745e+000 * Math.pow(x,0)
+        +  4.0664272464693108e+000 * Math.pow(x,1)
+        +  6.2180556627781181e-003 * Math.pow(x,2)
+        + -1.4240740965490721e-004 * Math.pow(x,3)
+        +  1.1666666838660524e-006 * Math.pow(x,4);
+        vhg= 2.5065000000006412e+003 * Math.pow(x,0)
+        +  1.0416666665783501e+000 * Math.pow(x,1)
+        +  3.9833333337751006e-002 * Math.pow(x,2)
+        + -8.6666666676186283e-004 * Math.pow(x,3)
+        +  6.6666666674137328e-006 * Math.pow(x,4);
+        vsf= 3.6107142974239306e-003 * Math.pow(x,0)
+        +  1.4935952379361673e-002 * Math.pow(x,1)
+        + -8.5833332548145714e-006 * Math.pow(x,2)
+        + -3.6666666833827205e-007 * Math.pow(x,3)
+        +  3.3333333463106454e-009 * Math.pow(x,4);
+        vsg= 9.1533369038281940e+000 * Math.pow(x,0)
+        + -2.6395793526302145e-002 * Math.pow(x,1)
+        +  1.0191666063523007e-004 * Math.pow(x,2)
+        +  5.5555681694868460e-008 * Math.pow(x,3)
+        + -3.3333342965880767e-009 * Math.pow(x,4);
+
+		}
+
+
+
+
+//45<=70
+	if(45<x&&x<=70){ vpsat= 2.2999798539307701e+000 * Math.pow(x,0)
+        + -1.0517249149173957e-001 * Math.pow(x,1)
+        +  6.7013605350542405e-003 * Math.pow(x,2)
+        + -6.5374067348157881e-005 * Math.pow(x,3)
+        +  1.0766666374687063e-006 * Math.pow(x,4);
+        volf=1.2354987899015500e-002 * Math.pow(x,0)
+        + -1.0068731418294819e-003 * Math.pow(x,1)
+        +  3.5481805622505462e-005 * Math.pow(x,2)
+        + -6.2094378763078996e-007 * Math.pow(x,3)
+        +  5.3995084738573960e-009 * Math.pow(x,4)
+        + -1.8664957945441935e-011 * Math.pow(x,5);
+        volg= 1.6192983423739685e+002 * Math.pow(x,0)
+        + -8.3269834906469953e+000 * Math.pow(x,1)
+        +  1.9461099418609851e-001 * Math.pow(x,2)
+        + -2.4838908769504149e-003 * Math.pow(x,3)
+        +  1.6850921831960778e-005 * Math.pow(x,4)
+        + -4.7724950189932867e-008 * Math.pow(x,5);
+        vuf=-1.2088751178614341e+001 * Math.pow(x,0)
+        +  5.3507887140430892e+000 * Math.pow(x,1)
+        + -4.3612725187678905e-002 * Math.pow(x,2)
+        +  8.0326397428744426e-004 * Math.pow(x,3)
+        + -7.3327268538737052e-006 * Math.pow(x,4)
+        +  2.6664558334818120e-008 * Math.pow(x,5);
+        vug= 1.9411394993882175e+003 * Math.pow(x,0)
+        +  4.0828480035412589e+001 * Math.pow(x,1)
+        + -1.4242086624408097e+000 * Math.pow(x,2)
+        +  2.5497806099843603e-002 * Math.pow(x,3)
+        + -2.2664748273336420e-004 * Math.pow(x,4)
+        +  7.9993330885072344e-007 * Math.pow(x,5);
+        vhf= 1.1442116964803941e+002 * Math.pow(x,0)
+        + -5.9118464044199834e+000 * Math.pow(x,1)
+        +  3.5502212775846415e-001 * Math.pow(x,2)
+        + -6.2095095064647332e-003 * Math.pow(x,3)
+        +  5.3995710925462997e-005 * Math.pow(x,4)
+        + -1.8665175577917542e-007 * Math.pow(x,5);
+        vhg=  2.9333510477856080e+003 * Math.pow(x,0)
+        + -3.7537637374984264e+001 * Math.pow(x,1)
+        +  1.4221788070190575e+000 * Math.pow(x,2)
+        + -2.5497280544411211e-002 * Math.pow(x,3)
+        +  2.2664288565953317e-004 * Math.pow(x,4)
+        + -7.9991732240768257e-007 * Math.pow(x,5);
+        vsf= -5.9199050006911690e-002 * Math.pow(x,0)
+        +  1.9751581855334811e-002 * Math.pow(x,1)
+        + -1.4983032400723466e-004 * Math.pow(x,2)
+        +  1.5332802807600399e-006 * Math.pow(x,3)
+        + -6.6662019334954644e-009 * Math.pow(x,4)
+        + -1.6184395842330736e-015 * Math.pow(x,5);
+        vsg=  8.0845716243933889e+000 * Math.pow(x,0)
+        +  6.9376039171714726e-002 * Math.pow(x,1)
+        + -3.3061249762554382e-003 * Math.pow(x,2)
+        +  6.0290467614218411e-005 * Math.pow(x,3)
+        + -5.3324998036652806e-007 * Math.pow(x,4)
+        +  1.8663768987770786e-009 * Math.pow(x,5);
+
+		}
+
+
+
+
+//70<=95
+	if(75<x&&x<=95){ vpsat=  3.5865564577269438e+001 * Math.pow(x,0)
+        + -2.1692497249954750e+000 * Math.pow(x,1)
+        +  5.6909340008003476e-002 * Math.pow(x,2)
+        + -6.6687389053825849e-004 * Math.pow(x,3)
+        +  4.6032851818498010e-006 * Math.pow(x,4)
+        + -8.0079625250267970e-009 * Math.pow(x,5);
+        volf=2.9085896341944573e-002 * Math.pow(x,0)
+        + -1.7433848220519727e-003 * Math.pow(x,1)
+        +  4.3149673637708193e-005 * Math.pow(x,2)
+        + -5.3204874598638422e-007 * Math.pow(x,3)
+        +  3.2689887387434991e-009 * Math.pow(x,4)
+        + -8.0056282252119140e-012 * Math.pow(x,5);
+        volg=9.9995077595628317e+001 * Math.pow(x,0)
+        + -3.8661272859592719e+000 * Math.pow(x,1)
+        +  6.4606350279083055e-002 * Math.pow(x,2)
+        + -5.6814828209723564e-004 * Math.pow(x,3)
+        +  2.5849525549197248e-006 * Math.pow(x,4)
+        + -4.8120033385208331e-009 * Math.pow(x,5);
+        vuf= 4.2856039511463024e+002 * Math.pow(x,0)
+        + -2.1661920866926948e+001 * Math.pow(x,1)
+        +  6.2200881666618912e-001 * Math.pow(x,2)
+        + -7.4664060928726203e-003 * Math.pow(x,3)
+        +  4.4705598013115630e-005 * Math.pow(x,4)
+        + -1.0676102480116883e-007 * Math.pow(x,5);
+        vug= 5.1793538166073340e+003 * Math.pow(x,0)
+        + -1.7283241618175413e+002 * Math.pow(x,1)
+        +  4.3130635229258871e+000 * Math.pow(x,2)
+        + -5.3206046285342840e-002 * Math.pow(x,3)
+        +  3.2690599100809677e-004 * Math.pow(x,4)
+        + -8.0058006398224958e-007 * Math.pow(x,5);
+        vhf=  3.4270298900116757e+002 * Math.pow(x,0)
+        + -1.6258387347023078e+001 * Math.pow(x,1)
+        +  4.8617439882030455e-001 * Math.pow(x,2)
+        + -5.7618404746106744e-003 * Math.pow(x,3)
+        +  3.4031442591681112e-005 * Math.pow(x,4)
+        + -8.0076207914918249e-008 * Math.pow(x,5);
+        vhg= -2.5617179750105424e+003 * Math.pow(x,0)
+        +  3.1141646473436140e+002 * Math.pow(x,1)
+        + -7.5446424656559063e+000 * Math.pow(x,2)
+        +  9.1578946667594918e-002 * Math.pow(x,3)
+        + -5.5381311772999709e-004 * Math.pow(x,4)
+        +  1.3344962058591131e-006 * Math.pow(x,5);
+        vsf=  1.6696113886632720e+000 * Math.pow(x,0)
+        + -9.1025623326460914e-002 * Math.pow(x,1)
+        +  2.6684835249166736e-003 * Math.pow(x,2)
+        + -3.3955483330511982e-005 * Math.pow(x,3)
+        +  2.1346794978622193e-007 * Math.pow(x,4)
+        + -5.3365961765403881e-010 * Math.pow(x,5);
+        vsg=  8.3101143996895477e+000 * Math.pow(x,0)
+        +  2.7200175580828524e-002 * Math.pow(x,1)
+        + -1.2460116297041352e-003 * Math.pow(x,2)
+        +  1.6799320160270863e-005 * Math.pow(x,3)
+        + -1.0686512639982180e-007 * Math.pow(x,4)
+        +  2.6714771484737655e-010 * Math.pow(x,5);
+
+		}
+
+
+
+//95<=120
+	if(95<x&&x<=120){ vpsat= -2.2654093700266958e+003 * Math.pow(x,0)
+        +  1.0585503487522948e+002 * Math.pow(x,1)
+        + -1.9707207684514914e+000 * Math.pow(x,2)
+        +  1.8364967641066942e-002 * Math.pow(x,3)
+        + -8.4779095459585545e-005 * Math.pow(x,4)
+        +  1.6014754524745753e-007 * Math.pow(x,5);
+        volf=-1.7884441778065457e-001 * Math.pow(x,0)
+        +  8.4837896898355778e-003 * Math.pow(x,1)
+        + -1.5969912659532688e-004 * Math.pow(x,2)
+        +  1.4996426468910549e-006 * Math.pow(x,3)
+        + -7.0245218135558489e-009 * Math.pow(x,4)
+        +  1.3130924765314751e-011 * Math.pow(x,5);
+        volg=1.0208073201147224e+002 * Math.pow(x,0)
+        + -3.8401598089240374e+000 * Math.pow(x,1)
+        +  6.1573630833127994e-002 * Math.pow(x,2)
+        + -5.1387680424721876e-004 * Math.pow(x,3)
+        +  2.2014356905966291e-006 * Math.pow(x,4)
+        + -3.8395823643061235e-009 * Math.pow(x,5);
+        vuf=  3.5474342605952791e+000 * Math.pow(x,0)
+        +  4.0955884966984701e+000 * Math.pow(x,1)
+        +  5.8899493856327790e-004 * Math.pow(x,2)
+        +  1.0271789704069245e-007 * Math.pow(x,3)
+        + -4.7852915419759527e-010 * Math.pow(x,4)
+        +  8.9017091313737897e-013 * Math.pow(x,5);
+        vug= -7.4127849937694236e+003 * Math.pow(x,0)
+        +  4.7254433134071456e+002 * Math.pow(x,1)
+        + -9.0485782905880630e+000 * Math.pow(x,2)
+        +  8.6651381222278070e-002 * Math.pow(x,3)
+        + -4.1387267677691210e-004 * Math.pow(x,4)
+        +  7.8860211330251400e-007 * Math.pow(x,5);
+        vhf= -6.5887601200499637e+002 * Math.pow(x,0)
+        +  3.5784753142607904e+001 * Math.pow(x,1)
+        + -6.0521207801988319e-001 * Math.pow(x,2)
+        +  5.7847781647079408e-003 * Math.pow(x,3)
+        + -2.7587460644014017e-005 * Math.pow(x,4)
+        +  5.2565937171620812e-008 * Math.pow(x,5);
+        vhg= -1.2340420013260329e+004 * Math.pow(x,0)
+        +  6.9637627017925274e+002 * Math.pow(x,1)
+        + -1.2981605202481159e+001 * Math.pow(x,2)
+        +  1.2112473482708880e-001 * Math.pow(x,3)
+        + -5.6428674185498272e-004 * Math.pow(x,4)
+        +  1.0498384248694100e-006 * Math.pow(x,5);
+        vsf= 3.7044166712844714e+001 * Math.pow(x,0)
+        + -1.7196864834641292e+000 * Math.pow(x,1)
+        +  3.2419382804518913e-002 * Math.pow(x,2)
+        + -3.0281395076304379e-004 * Math.pow(x,3)
+        +  1.4110372469473273e-006 * Math.pow(x,4)
+        + -2.6251920023338470e-009 * Math.pow(x,5);
+        vsg= -1.3985428720286352e+001 * Math.pow(x,0)
+        +  1.0492834186337678e+000 * Math.pow(x,1)
+        + -1.9851535188868136e-002 * Math.pow(x,2)
+        +  1.8457118355046030e-004 * Math.pow(x,3)
+        + -8.5410962030721595e-007 * Math.pow(x,4)
+        +  1.5766417045588841e-009 * Math.pow(x,5);
+
+		}
+
+
+
+
+	}
+
+
+
+		//  volumen especifico
+
+
+		</script>
+	</body>
+</html>
