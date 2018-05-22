@@ -132,13 +132,13 @@ border-radius: 333px;
 <div id="idbcalproces" >  Masa Total Kg  : <input id="idedtMT" type="number" name="lname" placeholder="masa Total" ><br>
 Masa liquido Kg : <input id="idedtmf" type="number" name="lname" placeholder="masa liquido" ><br>
  Masa  vapor Kg : <input id="idedtmg" type="number" name="lname" placeholder="masa vapor" ><br>
-  Calidad  liquido : <input id="idedtcf" type="number" name="lname" placeholder="calidad liquido" ><br>
+
  Calidad  vapor : <input id="idedtcg" type="number" name="lname" placeholder="calidadvapor" ><br>
 
  <h5 class="clsslabel" id="labelVf">Vf</h5>
   <h5 class="clsslabel" id="labelVg">Vg</h5>
     <h5 class="clsslabel" id="labelcg">cg</h5>
-      <h5 class="clsslabel" id="labelcf">cf</h5>
+      <h5 class="clsslabel" id="labelvm">vm</h5>
        <h5 class="clsslabel" id="labelmf">mf</h5>
         <h5 class="clsslabel" id="labelmg">mg</h5>
    <h5 class="clsslabel" id="labelpp">p</h5>
@@ -230,18 +230,34 @@ var vcg=null;
 var vcf=null;
 
 var vmt=0;
+var entraotro=0;
+
+
+var volprm=0;
+
+
+
+
+
+
+
+
 function calprocs(){
 
        vmf=document.getElementById("idedtmf").value;
     vmg=document.getElementById("idedtmg").value;
 
-       vcf=document.getElementById("idedtcf").value;
+     //  vcf=document.getElementById("idedtcf").value;
     vcg=document.getElementById("idedtcg").value;
+    if(vcg!=""){vcf=1-vcg;
+       alert("primer if "+vmg+ " g f "+ vmf+"  cg "+vcg);
+   }
+   
 
 vmt=document.getElementById("idedtMT").value;
 
-    if(vmf!=""&&vmg!=""&&vcf==""&&vcg==""){
-alert(1111);
+    if(vmf!=""&&vmg!=""&&vcg==""&&vmt!=""){
+ alert(-1);
 vcg=vmg/vmt;
 vcf=vmf/vmt;
 
@@ -249,40 +265,31 @@ vcf=vmf/vmt;
     Vtotalf=vmf*volf;
   voltotal=Vtotalg+Vtotalf;
 
+ volprm=volf+vcg*(volg-volf);
 
 
-  labelVg("Volumen vapor = "+Vtotalg+" m3");
-labelVf("Volumen liquido = "+ Vtotalf+" m3");//("volument Sistema "+voltotal+"  m3")
-labelVt("Volumen contenedor = "+ voltotal+" m3");
-
-labelmg("Masa vapor = "+ vmg+" Kg");
-labelmf("Masa liquido = "+ vmf+" Kg");
-labelcg("Calidad vaporv= "+ vcg);
-labelcf("Calidad liquido = "+ vcf);
-labelpp("Psat ="+vpsat+" KPa");
+todoslabel(voltotal,Vtotalf, Vtotalg,volg,volf,vcg,vpsat, volprm,vmg,vmf);
+entraotro=-2;
 
 }
-alert(vcf+" c fg "+vcg);
-if(vcf!=""&&vcg!=""){
-    alert(222);
-vmg=vcg*vmt;
-vmf=vcf*vmt;
+
+
+if(vcg==""&&vmt!=""&&vmf!=""&&vmg==""){
+   alert(0);
+
+vcf=vmf/vmt;
+
+vcg=1.00-vcf;
+vmg=vmt-vmf;
 
 
    Vtotalg=vmg*volg;
     Vtotalf=vmf*volf;
   voltotal=Vtotalg+Vtotalf;
+ volprm=volf+vcg*(volg-volf);
 
 
-  labelVg("Volumen vapor = "+Vtotalg+" m3");
-labelVf("Volumen liquido = "+ Vtotalf+" m3");//("volument Sistema "+voltotal+"  m3")
-labelVt("Volumen contenedor = "+ voltotal+" m3");
-
-labelmg("Masa vapor = "+ vmg+" Kg");
-labelmf("Masa liquido = "+ vmf+" Kg");
-labelcg("Calidad vaporv= "+ vcg);
-labelcf("Calidad liquido = "+ vcf);
-labelpp("Psat ="+vpsat+" KPa");
+todoslabel(voltotal,Vtotalf, Vtotalg,volg,volf,vcg,vpsat, volprm,vmg,vmf);
 /*
 vmg=null;
 vmf=null;
@@ -290,8 +297,273 @@ vcg=null;
 vcf=null;*/
 }
 
+
+
+if(vcg!=""&&vmt!=""&&vmf==""&&vmg!=""){
+ alert(1);
+vmg=vcg*vmt;
+vmf=vcf*vmt;
+
+
+   Vtotalg=vmg*volg;
+    Vtotalf=vmf*volf;
+  voltotal=Vtotalg+Vtotalf;
+ volprm=volf+vcg*(volg-volf);
+
+
+todoslabel(voltotal,Vtotalf, Vtotalg,volg,volf,vcg,vpsat, volprm,vmg,vmf);
+/*
+vmg=null;
+vmf=null;
+vcg=null;
+vcf=null;*/
+}
+if(vcg!=""&&vmt!=""&&vmf!=""&&vmg==""){
+   alert(2);
+vmg=vcg*vmt;
+vmf=vcf*vmt;
+
+
+   Vtotalg=vmg*volg;
+    Vtotalf=vmf*volf;
+  voltotal=Vtotalg+Vtotalf;
+ volprm=volf+vcg*(volg-volf);
+
+
+todoslabel(voltotal,Vtotalf, Vtotalg,volg,volf,vcg,vpsat, volprm,vmg,vmf);
+/*
+vmg=null;
+vmf=null;
+vcg=null;
+vcf=null;*/
 }
 
+
+
+if(vcg!=""&&vmt!=""&&vmf==""&&vmg==""){
+    alert(3);
+vmg=vcg*vmt;
+vmf=vcf*vmt;
+
+
+   Vtotalg=vmg*volg;
+    Vtotalf=vmf*volf;
+  voltotal=Vtotalg+Vtotalf;
+ volprm=volf+vcg*(volg-volf);
+
+todoslabel(voltotal,Vtotalf, Vtotalg,volg,volf,vcg,vpsat, volprm,vmg,vmf);
+/*
+vmg=null;
+vmf=null;
+vcg=null;
+vcf=null;*/
+}
+
+entraotro=1;
+
+if(vcg!=""&&vmt!="" && vmf==""&&vmg=="" &&entraotro==1)
+
+
+{
+    alert(4);
+vmg=vcg*vmt;
+vmf=vcf*vmt;
+
+
+   Vtotalg=vmg*volg;
+    Vtotalf=vmf*volf;
+  voltotal=Vtotalg+Vtotalf;
+  //volf+vcg*(volg-volf);//Vtotalg+Vtotalf;
+ volprm=volf+vcg*(volg-volf);
+
+
+todoslabel(voltotal,Vtotalf, Vtotalg,volg,volf,vcg,vpsat, volprm,vmg,vmf);
+
+
+
+
+
+/*
+vmg=null;
+vmf=null;
+vcg=null;
+vcf=null;*/
+}
+
+
+
+entraotro=2;
+
+if(vcg!=""&&vmf!="" && vmf==""&&vmg=="" &&entraotro==2){
+    alert(5);
+vmt=vmf/vcf;
+vmg=vcg*vmt;
+
+   Vtotalg=vmg*volg;
+    Vtotalf=vmf*volf;
+  voltotal=Vtotalg+Vtotalf;
+  //volf+vcg*(volg-volf);//Vtotalg+Vtotalf;
+ volprm=volf+vcg*(volg-volf);
+
+
+todoslabel(voltotal,Vtotalf, Vtotalg,volg,volf,vcg,vpsat, volprm,vmg,vmf);
+
+
+}
+
+
+
+
+entraotro=3;
+
+if(vcg!=""&&vmg!=""&& vmf==""&&vmg=="" &&entraotro==3){
+     alert(6);
+vmt=vmg/vcg;
+vmf=vcf*vmt;
+
+   Vtotalg=vmg*volg;
+    Vtotalf=vmf*volf;
+  voltotal=Vtotalg+Vtotalf;
+  //volf+vcg*(volg-volf);//Vtotalg+Vtotalf;
+ volprm=volf+vcg*(volg-volf);
+
+
+todoslabel(voltotal,Vtotalf, Vtotalg,volg,volf,vcg,vpsat, volprm,vmg,vmf);
+
+
+}
+
+
+
+
+entraotro=4;
+
+
+if(vmf==""&&vmg!=""&&vcg==""&&vmt!=""){
+
+     alert(7);
+ 
+vcg=vmg/vmt;
+vmf=vmt-vmg;
+
+
+   Vtotalg=vmg*volg;
+    Vtotalf=vmf*volf;
+  voltotal=Vtotalg+Vtotalf;
+  //volf+vcg*(volg-volf);//Vtotalg+Vtotalf;
+ volprm=volf+vcg*(volg-volf);
+
+
+todoslabel(voltotal,Vtotalf, Vtotalg,volg,volf,vcg,vpsat, volprm,vmg,vmf);
+
+
+}
+
+
+if(vmf!=""&&vmg==""&&vcg==""&&vmt!=""){
+
+ alert(8);
+ 
+vcf=vmf/vmt;
+vmg=vmt-vmf;
+
+
+   Vtotalg=vmg*volg;
+    Vtotalf=vmf*volf;
+  voltotal=Vtotalg+Vtotalf;
+  //volf+vcg*(volg-volf);//Vtotalg+Vtotalf;
+ volprm=volf+vcg*(volg-volf);
+
+
+todoslabel(voltotal,Vtotalf, Vtotalg,volg,volf,vcg,vpsat, volprm,vmg,vmf);
+
+}
+
+
+
+if(vmf==""&&vmg!=""&&vcg!=""&&vmt==""){
+ alert(9);
+vmt=vmg/vcg;
+vmf=vmt-vmg;
+
+   Vtotalg=vmg*volg;
+    Vtotalf=vmf*volf;
+  voltotal=Vtotalg+Vtotalf;
+  //volf+vcg*(volg-volf);//Vtotalg+Vtotalf;
+ volprm=volf+vcg*(volg-volf);
+
+todoslabel(voltotal,Vtotalf, Vtotalg,volg,volf,vcg,vpsat, volprm,vmg,vmf);
+
+
+}
+
+
+
+
+
+
+if(vmf!=""&&vmg==""&&vcg!=""&&vmt==""){
+ alert(10);
+vmt=vmg/vcg;
+
+
+   Vtotalg=vmg*volg;
+    Vtotalf=vmf*volf;
+  voltotal=Vtotalg+Vtotalf;
+  //volf+vcg*(volg-volf);//Vtotalg+Vtotalf;
+ volprm=volf+vcg*(volg-volf);
+
+todoslabel(voltotal,Vtotalf, Vtotalg,volg,volf,vcg,vpsat, volprm,vmg,vmf);
+
+
+}
+
+
+
+
+if(vmf!=""&&vmg!=""&&vcg!=""&&vmt!=""){
+ alert(11);
+vmt=vmg/vcg;
+
+
+   Vtotalg=vmg*volg;
+    Vtotalf=vmf*volf;
+  voltotal=Vtotalg+Vtotalf;
+  //volf+vcg*(volg-volf);//Vtotalg+Vtotalf;
+ volprm=volf+vcg*(volg-volf);
+
+todoslabel(voltotal,Vtotalf, Vtotalg,volg,volf,vcg,vpsat, volprm,vmg,vmf);
+
+
+}
+
+
+
+
+
+
+
+
+}
+function todoslabel(Vt,Vf,Vg,vg,vf,xg,p,vm,mg,mf){
+
+
+
+  labelVg("Volumen vapor = "+Vg+" m3");
+labelVf("Volumen liquido = "+ Vf+" m3");//("volument Sistema "+voltotal+"  m3")
+labelVt("Volumen contenedor = "+ Vt+" m3");
+
+labelmg("Masa vapor = "+ mg+" Kg");
+labelmf("Masa liquido = "+ mf+" Kg");
+labelcg("Calidad vaporv= "+ xg);
+//labelcf("Calidad liquido = "+ vcf);
+labelpp("Psat ="+p+" KPa");
+labelvm("vprom ="+vm+" m3/Kg");
+
+
+
+
+}
 
 
 
@@ -330,6 +602,11 @@ vcf=null;*/
  function labelpp(st1){
 
             document.getElementById("labelpp").innerHTML =st1;
+        }
+
+ function labelvm(st1){
+
+            document.getElementById("labelvm").innerHTML =st1;
         }
 
 
