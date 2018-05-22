@@ -116,6 +116,13 @@ background-color:#B5C5CE;letter-spacing:0pt;
 word-spacing:2pt;font-size:14px;text-align:left;
 font-family:trebuchet MS, sans-serif;line-height:1;}
 
+#btnewtemp{
+    -webkit-border-radius: 333px;
+border-radius: 333px;
+}
+
+
+
     </style> 
 	</head>
 	<body>
@@ -131,6 +138,7 @@ Masa liquido Kg : <input id="idedtmf" type="text" name="lname" placeholder="masa
     <h5 class="clsslabel" id="labelVt">vol</h5>
 
  <button id="btcalproces" onclick="calprocs()">ok</button>
+ <button id="btnewtemp" onclick="nuevatemp()">nueva temp &#128293; &#8451; </button>
 </div>
 
      <div id="idproceso"  ><button id="idbtmostproceso" onclick="ocultarccalculos()">proceso</button></div>
@@ -248,7 +256,14 @@ labelVt("Volumen contenedor = "+ voltotal+" m3")
 
 
 
+function nuevatemp(){
 
+
+document.getElementById("idproceso").style.display = "none";
+document.getElementById("idbcalproces").style.display = "none";
+document.getElementById("iddivedti").style.display = "block";
+
+}
 
 
 
