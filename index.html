@@ -129,11 +129,18 @@ border-radius: 333px;
 
 
 <div></div>
-<div id="idbcalproces" >
+<div id="idbcalproces" >  Masa Total Kg  : <input id="idedtMT" type="number" name="lname" placeholder="masa Total" ><br>
 Masa liquido Kg : <input id="idedtmf" type="number" name="lname" placeholder="masa liquido" ><br>
  Masa  vapor Kg : <input id="idedtmg" type="number" name="lname" placeholder="masa vapor" ><br>
+  Calidad  liquido : <input id="idedtcf" type="number" name="lname" placeholder="calidad liquido" ><br>
+ Calidad  vapor : <input id="idedtcg" type="number" name="lname" placeholder="calidadvapor" ><br>
+
  <h5 class="clsslabel" id="labelVf">Vf</h5>
   <h5 class="clsslabel" id="labelVg">Vg</h5>
+    <h5 class="clsslabel" id="labelcg">cg</h5>
+      <h5 class="clsslabel" id="labelcf">cf</h5>
+       <h5 class="clsslabel" id="labelmf">mf</h5>
+        <h5 class="clsslabel" id="labelmg">mg</h5>
    <h5 class="clsslabel" id="labelp">p</h5>
     <h5 class="clsslabel" id="labelVt">vol</h5>
 
@@ -213,26 +220,74 @@ function ocultarccalculos(){
      document.getElementById("idbcalproces").style.display = "block";
 }
 
-  var vmf="";
-var vmg="";
+  var vmf=null;
+var vmg=null;
 var voltotal=0;
 var Vtotalg=0;
 var Vtotalf=0;
+
+var vcg=null;
+var vcf=null;
+
+var vmt=0;
 function calprocs(){
 
        vmf=document.getElementById("idedtmf").value;
     vmg=document.getElementById("idedtmg").value;
 
+       vcf=document.getElementById("idedtcf").value;
+    vcg=document.getElementById("idedtcg").value;
 
-    if(vmf!=""&&vmg!=""){
+vmt=document.getElementById("idedtMT").value;
+
+    if(vmf!=""&&vmg!=""&&vcf==""&&vcg==""){
+alert(1111);
+vcg=vmg/vmt;
+vcf=vmf/vmt;
+
         Vtotalg=vmg*volg;
     Vtotalf=vmf*volf;
   voltotal=Vtotalg+Vtotalf;
-  labelVg("Volumen vapor = "+Vtotalg+" m3")
-labelVf("Volumen liquido = "+ Vtotalf+" m3")//("volument Sistema "+voltotal+"  m3")
-labelVt("Volumen contenedor = "+ voltotal+" m3")
-}
 
+
+
+  labelVg("Volumen vapor = "+Vtotalg+" m3");
+labelVf("Volumen liquido = "+ Vtotalf+" m3");//("volument Sistema "+voltotal+"  m3")
+labelVt("Volumen contenedor = "+ voltotal+" m3");
+
+labelmg("Masa vapor = "+ vmg+" Kg");
+labelmf("Masa liquido = "+ vmf+" Kg");
+labelcg("Calidad vaporv= "+ vcg);
+labelcf("Calidad liquido = "+ vcf);
+
+
+}
+alert(vcf+" c fg "+vcg);
+if(vcf!=""&&vcg!=""){
+    alert(222);
+vmg=vcg*vmt;
+vmf=vcf*vmt;
+
+
+   Vtotalg=vmg*volg;
+    Vtotalf=vmf*volf;
+  voltotal=Vtotalg+Vtotalf;
+
+
+  labelVg("Volumen vapor = "+Vtotalg+" m3");
+labelVf("Volumen liquido = "+ Vtotalf+" m3");//("volument Sistema "+voltotal+"  m3")
+labelVt("Volumen contenedor = "+ voltotal+" m3");
+
+labelmg("Masa vapor = "+ vmg+" Kg");
+labelmf("Masa liquido = "+ vmf+" Kg");
+labelcg("Calidad vaporv= "+ vcg);
+labelcf("Calidad liquido = "+ vcf);
+/*
+vmg=null;
+vmf=null;
+vcg=null;
+vcf=null;*/
+}
 
 }
 
@@ -253,6 +308,26 @@ labelVt("Volumen contenedor = "+ voltotal+" m3")
 
             document.getElementById("labelVt").innerHTML =st1;
         }
+
+                function labelcf(st1){
+
+            document.getElementById("labelcf").innerHTML =st1;
+        }
+                 function labelcg(st1){
+
+            document.getElementById("labelcg").innerHTML =st1;
+        }
+
+         function labelmg(st1){
+
+            document.getElementById("labelmg").innerHTML =st1;
+        }
+ function labelmf(st1){
+
+            document.getElementById("labelmf").innerHTML =st1;
+        }
+
+
 
 
 
