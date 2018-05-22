@@ -6,8 +6,10 @@
 		<title>My first three.js app</title>
 	<style>
 
-    div {
-    background-color: lightblue;
+    div {background: #B5C5CE;
+background: -moz-linear-gradient(top, #B5C5CE 0%, #828E99 100%);
+background: -webkit-linear-gradient(top, #B5C5CE 0%, #828E99 100%);
+background: linear-gradient(to bottom, #B5C5CE 0%, #828E99 100%);
 }
        #map {
         height: 100%;
@@ -89,9 +91,49 @@ text-shadow: #e0e0e0 1px 1px 0;}
   box-shadow: 2px 2px 7px 1px #D0FF14;
 }
 
+#idproceso{
+position: absolute;
+    left: 50px;
+    top: 5px;
+    z-index:7;
+    background: #B5C5CE;
+background: -moz-linear-gradient(top, #B5C5CE 0%, #A1A6C5 100%);
+background: -webkit-linear-gradient(top, #B5C5CE 0%, #A1A6C5 100%);
+background: linear-gradient(to bottom, #B5C5CE 0%, #A1A6C5 100%);
+}
+
+#btcalproces{width: 70px;
+    height: 70px;
+-webkit-border-radius: 333px;
+border-radius: 333px;
+}
+
+
+
+.clsslabel{text-shadow:0px 3px 0 rgba(168,168,168,1);
+font-weight:normal;color:#2D71A6;
+background-color:#B5C5CE;letter-spacing:0pt;
+word-spacing:2pt;font-size:14px;text-align:left;
+font-family:trebuchet MS, sans-serif;line-height:1;}
+
     </style> 
 	</head>
-	<body> 
+	<body>
+
+
+<div></div>
+<div id="idbcalproces" >
+Masa liquido Kg : <input id="idedtmf" type="text" name="lname" placeholder="masa liquido" ><br>
+ Masa  vapor Kg : <input id="idedtmg" type="text" name="lname" placeholder="masa vapor" ><br>
+ <h5 class="clsslabel" id="labelVf">Vf</h5>
+  <h5 class="clsslabel" id="labelVg">Vg</h5>
+   <h5 class="clsslabel" id="labelp">p</h5>
+    <h5 class="clsslabel" id="labelVt">vol</h5>
+
+ <button id="btcalproces" onclick="calprocs()">ok</button>
+</div>
+
+     <div id="idproceso"  ><button id="idbtmostproceso" onclick="ocultarccalculos()">proceso</button></div>
          <div id="iddivlog" ><br> &#128515;<input id="idnombre" type="text" placeholder="user" name="lname"><br>
           &#128272;<input id="idclave" type="password" placeholder="password" name="lname">
   <button id="idbtvalidar" onclick="validarform()">ok</div> 
@@ -126,8 +168,14 @@ $.getJSON('almacen.json', function(data) {
   almacen=data;
     //data is the JSON string
 });
+//http://csstxt.com/
 
 document.getElementById("iddivedti").style.display = "none";
+
+document.getElementById("idproceso").style.display = "none";
+document.getElementById("idbcalproces").style.display = "none";
+
+
 function validarform(){
 
     nombre=document.getElementById("idnombre").value;
@@ -138,6 +186,7 @@ function validarform(){
     {
 document.getElementById("iddivedti").style.display = "block";
 document.getElementById("iddivlog").style.display = "none";
+
 labelmsn(almacen[x].msn);
 
     console.log(almacen[x].clave);
@@ -148,6 +197,83 @@ labelmsn(almacen[x].msn);
 
 
 }
+
+
+function ocultarccalculos(){
+ document.getElementById("iddivedti").style.display = "none";
+     document.getElementById("idproceso").style.display = "none";
+     document.getElementById("idbcalproces").style.display = "block";
+}
+
+  var vmf="";
+var vmg="";
+var voltotal=0;
+var Vtotalg=0;
+var Vtotalf=0;
+function calprocs(){
+
+       vmf=document.getElementById("idedtmf").value;
+    vmg=document.getElementById("idedtmg").value;
+
+
+    if(vmf!=""&&vmg!=""){
+        Vtotalg=vmg*volg;
+    Vtotalf=vmf*volf;
+  voltotal=Vtotalg+Vtotalf;
+  labelVg("Volumen vapor = "+Vtotalg+" m3")
+labelVf("Volumen liquido = "+ Vtotalf+" m3")//("volument Sistema "+voltotal+"  m3")
+labelVt("Volumen contenedor = "+ voltotal+" m3")
+}
+
+
+}
+
+
+
+
+            function labelVf(st1){
+
+            document.getElementById("labelVf").innerHTML =st1;
+        }
+
+             function labelVg(st1){
+
+            document.getElementById("labelVg").innerHTML =st1;
+        }
+
+               function labelVt(st1){
+
+            document.getElementById("labelVt").innerHTML =st1;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -178,6 +304,10 @@ labelmsn(almacen[x].msn);
 			function presionsatura(){
 
 vtemp=document.getElementById("idedittemp").value;
+
+
+
+document.getElementById("idproceso").style.display = "block";
 
 presionsat(vtemp);
 labelt("T ="+vtemp+ " C");
