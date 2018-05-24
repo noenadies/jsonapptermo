@@ -6,8 +6,8 @@
     "msn" : "Activo"
   },
   "dos" : {
-    "clave" : "miclave2",
-    "nombre" : "minombre2",
+    "clave" : "borrarclave",
+    "nombre" : "borrarclave",
     "email" : "minombre2",
     "msn" : "ms2"
   }
